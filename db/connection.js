@@ -6,11 +6,12 @@ const connection = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  ssl: process.env.DB_CA_CERT ? { ca: process.env.DB_CA_CERT } : undefined,
 });
 
 connection.connect((err) => {
   if (err) throw err;
-  console.log('Connected to MySQL!');
+  console.log("Connected to MySQL!");
 });
 
 module.exports = connection;
